@@ -1,380 +1,473 @@
 import React, { useState } from 'react';
-import { Search, Star } from 'lucide-react';
 
-export default function Hero({ onSearchSubmit, onExploreCourses }) {
+export default function Hero({ onSearchSubmit }) {
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (onSearchSubmit) {
-      onSearchSubmit(searchTerm);
-    }
-    const coursesElem = document.getElementById('courses');
-    if (coursesElem) {
-      coursesElem.scrollIntoView({ behavior: 'smooth' });
-    }
+    if (onSearchSubmit) onSearchSubmit(searchTerm);
+    document.getElementById('courses')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <section className="hero-section bg-grid-blue">
-      {/* 3D Floating Decorative Ornaments */}
-      <div className="hero-ornament ornament-top-left animate-float">
-        <img src="/figma_images/f9c0e0fd05db48405aa72287b20d04b9a01feb51.png" alt="3D Ring" />
-      </div>
-      <div className="hero-ornament ornament-top-right animate-float-delayed">
-        <img src="/figma_images/92fc70a39c36138c0e55699b18b3e88bd1f86a59.png" alt="3D Cone" />
-      </div>
-      <div className="hero-ornament ornament-left-squiggle animate-float">
-        <img src="/figma_images/4557999be35f4bf82b01da42a1ef24a1236fbddc.png" alt="3D Ribbon" onError={(e) => e.target.style.display = 'none'} />
-      </div>
-      <div className="hero-ornament ornament-bottom-ring animate-float-delayed">
-        <img src="/figma_images/b2ff07b46d7e2dc3b306b453a258810c9c7f66a8.png" alt="3D Ring" onError={(e) => e.target.style.display = 'none'} />
-      </div>
+    <section className="hero-root" id="home">
+      {/* ── Grid dot overlay (12% opacity) ── */}
+      <div className="hero-grid-overlay" />
 
-      <div className="container hero-content-container">
-        {/* Main Title & Subtitle */}
-        <div className="hero-headings">
+      {/* ── Floating 3D ornaments (properly colored from Figma) ── */}
+
+      {/* LEFT SIDE ornaments */}
+      {/* Large lime blob – bottom-left, imageRef e3b559 masked lime */}
+      <img src="/hero_ornaments/orb_lime_large.png"   alt="" className="h-orb orb-lime-large   animate-float" />
+      {/* Small white/grey cone blob – mid left */}
+      <img src="/hero_ornaments/orb_white_sm.png"     alt="" className="h-orb orb-white-sm     animate-float-delayed" />
+      {/* White cone – lower-left */}
+      <img src="/hero_ornaments/orb_cone_white_bl.png" alt="" className="h-orb orb-cone-wbl   animate-float" />
+
+      {/* RIGHT SIDE ornaments */}
+      {/* Lime cone – top-right */}
+      <img src="/hero_ornaments/orb_cone_lime_tr.png"  alt="" className="h-orb orb-cone-ltr   animate-float-delayed" />
+      {/* Small white cone – mid-right */}
+      <img src="/hero_ornaments/orb_cone_white_sm.png" alt="" className="h-orb orb-cone-wsm   animate-float" />
+      {/* White circle/ring – far right lower */}
+      <img src="/hero_ornaments/orb_circle_white_r.png" alt="" className="h-orb orb-circle-wr animate-float-delayed" />
+
+      {/* ── Big lime filled circle behind the student ── */}
+      {/* In Figma: ellipse at x:145, y:582, 1149×1149 with #CBFC01 320px stroke
+          Visually this looks like the solid lime semicircle at the bottom */}
+      <div className="hero-lime-circle" />
+
+      {/* ── Top content block (title + subtitle + search) ── */}
+      <div className="hero-inner">
+        <div className="hero-text-block">
           <h1 className="hero-title">
-            Get Access to Hundreds <br /> Courses Available
+            Get Access to Hundreds<br />Courses Available
           </h1>
           <p className="hero-subtitle">
             Unlock your creativity, gain valuable knowledge, and grow your business with our wide range of courses.
           </p>
-
-          {/* Search Bar */}
-          <form className="hero-search-bar" onSubmit={handleSubmit} id="hero-search-form">
-            <div className="search-input-wrapper">
-              <Search size={18} color="#82868e" className="search-icon" />
-              <input
-                type="text"
-                placeholder="Course, topic, creator"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="search-input"
-                id="hero-search-input"
-              />
-            </div>
-            <button type="submit" className="btn btn-lime search-submit-btn" id="hero-search-btn">
-              Search
-            </button>
-          </form>
         </div>
 
-        {/* Centerpiece Visual with Student & Floating Badges */}
-        <div className="hero-visual-wrapper">
-          <div className="hero-lime-circle"></div>
-
-          {/* Student Portrait */}
-          <img
-            src="/figma_images/29a52a24e51266edcd7d57d73392ee5fc4833220.png"
-            alt="ByteSpace Student"
-            className="hero-student-img"
-          />
-
-          {/* Floating Badge 1: UI/UX Design */}
-          <div className="hero-badge badge-uiux animate-float">
-            <div className="badge-title">UI/UX Design</div>
-            <div className="badge-subtitle">200 Courses • 1000+ Students</div>
+        {/* Search bar */}
+        <form className="hero-search-bar" onSubmit={handleSubmit} id="hero-search-form">
+          <div className="hero-search-input-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="hero-search-icon">
+              <path d="M21 21L15.0001 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="#82868E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            <input
+              type="text"
+              placeholder="Course, topic, creator"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="hero-search-input"
+              id="hero-search-input"
+            />
           </div>
+          <button type="submit" className="hero-search-btn" id="hero-search-btn">
+            Search
+          </button>
+        </form>
+      </div>
 
-          {/* Floating Badge 2: Learning Progress */}
-          <div className="hero-badge badge-progress animate-float-delayed">
-            <div className="progress-label">Learning Progress</div>
-            <div className="progress-percentage">55%</div>
-            <div className="progress-bar-track">
-              <div className="progress-bar-fill" style={{ width: '55%' }}></div>
-            </div>
+      {/* ── Bottom visual area (student + badges) ── */}
+      <div className="hero-visual-area">
+        {/* Floating badges */}
+        {/* UI/UX Design – left of student */}
+        <div className="h-badge badge-uiux animate-float">
+          <div className="h-badge-title">UI/UX Design</div>
+          <div className="h-badge-sub">
+            <span>200 Courses</span>
+            <span className="h-badge-dot">•</span>
+            <span>1000+ Students</span>
           </div>
+        </div>
 
-          {/* Floating Badge 3: Happy Students */}
-          <div className="hero-badge badge-students animate-float">
-            <div className="students-header">
-              <span className="badge-title">Happy Students</span>
-              <span className="rating-pill">
-                4.5 <span className="star-icon">★</span>
-              </span>
-            </div>
-            <div className="avatars-group">
-              <img src="/figma_images/0577f0e9b7fca2f32639871454da0de95f951709.png" alt="Avatar" className="student-avatar" />
-              <img src="/figma_images/63c4be83222c85e6c852819bc5d4b24a87a87fb6.png" alt="Avatar" className="student-avatar" />
-              <img src="/figma_images/728c3b1d33fe647a46f9bf668322f8c1d94ed937.png" alt="Avatar" className="student-avatar" />
-              <img src="/figma_images/853767f40f2b236e768652174f76aa081e7d5cf2.png" alt="Avatar" className="student-avatar" onError={(e) => e.target.style.display = 'none'} />
-              <span className="more-count">2K+</span>
-            </div>
+        {/* Student photo – center */}
+        <img
+          src="/figma_images/29a52a24e51266edcd7d57d73392ee5fc4833220.png"
+          alt="ByteSpace Student"
+          className="hero-student-img"
+        />
+
+        {/* Learning Progress – right of student */}
+        <div className="h-badge badge-progress animate-float-delayed">
+          <div className="h-badge-label-sm">Learning Progress</div>
+          <div className="h-badge-pct">55%</div>
+          <div className="h-progress-track">
+            <div className="h-progress-fill" />
+          </div>
+        </div>
+
+        {/* Happy Students – below-left */}
+        <div className="h-badge badge-students animate-float">
+          <div className="h-students-header">
+            <span className="h-badge-title">Happy Students</span>
+            <span className="h-students-rating">
+              4.5 <span className="h-star">★</span>
+            </span>
+          </div>
+          <div className="h-avatars">
+            <img src="/figma_images/9ef8cb329b949267cc8214b6727067c4a13af4b4.png" alt="" className="h-av" />
+            <img src="/figma_images/b44979e1c98ecb3ec92ac86805fe55581fbeaa60.png" alt="" className="h-av" />
+            <img src="/figma_images/83fb3e04056cc892636460bee5791aa3f243854c.png" alt="" className="h-av" />
+            <img src="/figma_images/f3cf29a8fed39589ceb38423e65b26b8d6c93123.png" alt="" className="h-av" />
+            <img src="/figma_images/5824acacb3b76175bc84084ec18597109498f96d.png" alt="" className="h-av" />
+            <img src="/figma_images/7fdccc783264eedc4fb989984eecbc4058a219f2.png" alt="" className="h-av" />
+            <span className="h-av-more">2K+</span>
           </div>
         </div>
       </div>
 
       <style>{`
-        .hero-section {
-          padding-top: 140px;
-          padding-bottom: 80px;
-          overflow: hidden;
+        /* ────────────────────────────────────── */
+        /* ROOT                                   */
+        /* ────────────────────────────────────── */
+        .hero-root {
           position: relative;
+          width: 100%;
+          min-height: 620px;
+          background-color: #003BE2;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
         }
-        .hero-content-container {
+
+        /* Grid overlay */
+        .hero-grid-overlay {
+          position: absolute;
+          inset: 0;
+          background-image:
+            linear-gradient(rgba(255,255,255,0.09) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.09) 1px, transparent 1px);
+          background-size: 60px 60px;
+          opacity: 0.12;
+          z-index: 0;
+          pointer-events: none;
+        }
+
+        /* ────────────────────────────────────── */
+        /* ORNAMENTS                              */
+        /* ────────────────────────────────────── */
+        .h-orb {
+          position: absolute;
+          pointer-events: none;
+          z-index: 2;
+          object-fit: contain;
+        }
+
+        /* LEFT ornaments */
+        .orb-lime-large  { width: 180px; left: -30px;  top: 140px; }
+        .orb-white-sm    { width: 80px;  left: 130px;  top: 320px; }
+        .orb-cone-wbl    { width: 140px; left: 30px;   top: 380px; }
+
+        /* RIGHT ornaments */
+        .orb-cone-ltr    { width: 150px; right: 30px;  top: 100px; }
+        .orb-cone-wsm    { width: 100px; right: 160px; top: 300px; }
+        .orb-circle-wr   { width: 130px; right: 0px;   top: 340px; }
+
+        /* ────────────────────────────────────── */
+        /* LIME CIRCLE                            */
+        /* ────────────────────────────────────── */
+        /* The large lime-green filled circle behind the student */
+        .hero-lime-circle {
+          position: absolute;
+          bottom: -60px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 520px;
+          height: 520px;
+          border-radius: 50%;
+          background: #CBFC01;
+          z-index: 3;
+          pointer-events: none;
+        }
+
+        /* ────────────────────────────────────── */
+        /* TOP CONTENT (title + search)           */
+        /* ────────────────────────────────────── */
+        .hero-inner {
+          position: relative;
+          z-index: 5;
+          max-width: 1200px;
+          width: 100%;
+          margin: 0 auto;
+          padding: 160px 24px 0;
           display: flex;
           flex-direction: column;
           align-items: center;
-          position: relative;
-          z-index: 2;
+          gap: 48px;
         }
-        .hero-headings {
+        .hero-text-block {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 24px;
           text-align: center;
-          max-width: 780px;
-          margin-bottom: 50px;
         }
         .hero-title {
-          font-size: 58px;
-          font-weight: 700;
-          color: #ffffff;
-          line-height: 1.15;
-          margin-bottom: 20px;
-          letter-spacing: -1.2px;
+          font-family: var(--font-heading);
+          font-size: clamp(40px, 5.5vw, 72px);
+          font-weight: 600;
+          color: #FFFFFF;
+          line-height: 1.2;
+          letter-spacing: -0.01em;
+          max-width: 880px;
+          text-align: center;
         }
         .hero-subtitle {
+          font-family: var(--font-body);
           font-size: 18px;
-          color: rgba(255, 255, 255, 0.85);
+          font-weight: 400;
+          color: #E5E6E8;
           line-height: 1.6;
-          margin-bottom: 36px;
-        }
-        .hero-search-bar {
-          display: flex;
-          align-items: center;
-          background: #ffffff;
-          border-radius: 9999px;
-          padding: 6px 8px 6px 20px;
-          max-width: 520px;
-          margin: 0 auto;
-          box-shadow: 0 16px 36px rgba(0, 0, 0, 0.2);
-        }
-        .search-input-wrapper {
-          display: flex;
-          align-items: center;
-          flex: 1;
-          gap: 12px;
-        }
-        .search-icon {
-          flex-shrink: 0;
-        }
-        .search-input {
-          border: none;
-          outline: none;
-          font-size: 15px;
-          color: var(--neutral-900);
-          width: 100%;
-          background: transparent;
-        }
-        .search-input::placeholder {
-          color: var(--neutral-400);
-        }
-        .search-submit-btn {
-          padding: 10px 26px;
-          font-size: 14px;
+          text-align: center;
+          max-width: 680px;
         }
 
-        /* Centerpiece */
-        .hero-visual-wrapper {
-          position: relative;
-          width: 100%;
-          max-width: 540px;
-          height: 480px;
+        /* Search bar */
+        .hero-search-bar {
           display: flex;
-          justify-content: center;
-          align-items: flex-end;
-          margin-top: 20px;
+          flex-direction: row;
+          align-items: center;
+          gap: 16px;
         }
-        .hero-lime-circle {
+        .hero-search-input-wrap {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 8px;
+          width: 430px;
+          height: 52px;
+          background: #FFFFFF;
+          border-radius: 24px;
+          padding: 12px 24px;
+          box-sizing: border-box;
+        }
+        .hero-search-icon {
+          flex-shrink: 0;
+          width: 24px;
+          height: 24px;
+        }
+        .hero-search-input {
+          flex: 1;
+          border: none;
+          outline: none;
+          font-family: var(--font-body);
+          font-size: 16px;
+          color: #242528;
+          background: transparent;
+        }
+        .hero-search-input::placeholder { color: #82868E; }
+        .hero-search-btn {
+          height: 52px;
+          padding: 0 28px;
+          background: #D4FB20;
+          border-radius: 24px;
+          border: none;
+          cursor: pointer;
+          font-family: var(--font-body);
+          font-size: 16px;
+          font-weight: 500;
+          color: #242528;
+          transition: background 0.18s ease, transform 0.18s ease;
+          white-space: nowrap;
+        }
+        .hero-search-btn:hover {
+          background: #c8f200;
+          transform: translateY(-2px);
+        }
+
+        /* ────────────────────────────────────── */
+        /* VISUAL AREA (student + badges)         */
+        /* ────────────────────────────────────── */
+        .hero-visual-area {
+          position: relative;
+          z-index: 5;
+          width: 100%;
+          max-width: 1200px;
+          margin: 0 auto;
+          height: 420px;
+          margin-top: 32px;
+          flex-shrink: 0;
+        }
+
+        /* Student photo */
+        .hero-student-img {
           position: absolute;
-          width: 380px;
-          height: 380px;
-          border-radius: 50%;
-          background: var(--secondary-500);
           bottom: 0;
           left: 50%;
           transform: translateX(-50%);
-          z-index: 1;
-        }
-        .hero-student-img {
-          position: relative;
-          z-index: 2;
-          width: 440px;
+          width: 360px;
           height: auto;
           object-fit: contain;
-          margin-bottom: 0;
-          filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.25));
+          z-index: 5;
+          filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));
         }
 
-        /* Badges */
-        .hero-badge {
+        /* ────────────────────────────────────── */
+        /* FLOATING BADGES                        */
+        /* ────────────────────────────────────── */
+        .h-badge {
           position: absolute;
-          z-index: 4;
-          background: #ffffff;
+          background: rgba(255,255,255,0.97);
           border-radius: 16px;
           padding: 14px 18px;
-          box-shadow: 0 16px 35px rgba(0, 0, 0, 0.15);
-          backdrop-filter: blur(8px);
+          z-index: 7;
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          box-shadow: 0 10px 30px rgba(0,0,0,0.12);
         }
-        .badge-uiux {
-          top: 80px;
-          left: -40px;
-        }
-        .badge-title {
-          font-family: var(--font-heading);
-          font-weight: 700;
+        .h-badge-title {
+          font-family: var(--font-body);
           font-size: 14px;
-          color: var(--neutral-950);
-        }
-        .badge-subtitle {
-          font-size: 12px;
-          color: var(--neutral-500);
-          margin-top: 4px;
-        }
-        .badge-progress {
-          top: 70px;
-          right: -40px;
-          min-width: 170px;
-        }
-        .progress-label {
-          font-size: 12px;
-          color: var(--neutral-500);
           font-weight: 500;
+          color: #242528;
+          line-height: 1.2;
+          margin-bottom: 4px;
         }
-        .progress-percentage {
+        .h-badge-sub {
+          display: flex;
+          gap: 6px;
+          font-family: var(--font-body);
+          font-size: 11px;
+          color: #82868E;
+        }
+        .h-badge-dot { color: #82868E; }
+
+        /* UI/UX badge */
+        .badge-uiux {
+          left: calc(50% - 340px);
+          bottom: 140px;
+        }
+
+        /* Progress badge */
+        .badge-progress {
+          right: calc(50% - 380px);
+          bottom: 160px;
+          min-width: 180px;
+        }
+        .h-badge-label-sm {
+          font-family: var(--font-body);
+          font-size: 12px;
+          font-weight: 500;
+          color: #242528;
+          margin-bottom: 6px;
+        }
+        .h-badge-pct {
           font-family: var(--font-heading);
-          font-size: 28px;
-          font-weight: 700;
-          color: var(--neutral-950);
-          line-height: 1.1;
-          margin: 4px 0 8px;
+          font-size: 44px;
+          font-weight: 600;
+          color: #242528;
+          line-height: 1.2;
+          letter-spacing: -0.01em;
+          margin-bottom: 8px;
         }
-        .progress-bar-track {
-          width: 100%;
-          height: 6px;
-          background: var(--neutral-100);
-          border-radius: 3px;
+        .h-progress-track {
+          width: 160px;
+          height: 7px;
+          background: #E5E6E8;
+          border-radius: 24px;
           overflow: hidden;
         }
-        .progress-bar-fill {
+        .h-progress-fill {
+          width: 55%;
           height: 100%;
-          background: var(--secondary-500);
-          border-radius: 3px;
+          background: #D4FB20;
+          border-radius: 24px;
         }
+
+        /* Happy Students badge */
         .badge-students {
+          left: calc(50% - 380px);
           bottom: 30px;
-          left: -60px;
-          min-width: 190px;
+          min-width: 240px;
         }
-        .students-header {
+        .h-students-header {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          gap: 12px;
           margin-bottom: 8px;
         }
-        .rating-pill {
-          display: flex;
-          align-items: center;
-          gap: 3px;
+        .h-students-rating {
+          font-family: var(--font-body);
           font-size: 12px;
-          font-weight: 700;
-          color: var(--neutral-900);
-        }
-        .star-icon {
-          color: #ffb800;
-        }
-        .avatars-group {
+          font-weight: 600;
+          color: #242528;
           display: flex;
           align-items: center;
+          gap: 2px;
         }
-        .student-avatar {
-          width: 26px;
-          height: 26px;
+        .h-star { color: #D4FB20; font-size: 13px; }
+        .h-avatars {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+        }
+        .h-av {
+          width: 36px;
+          height: 36px;
           border-radius: 50%;
-          border: 2px solid #ffffff;
-          margin-left: -6px;
           object-fit: cover;
+          border: 2px solid #fff;
+          margin-left: -12px;
         }
-        .student-avatar:first-child {
-          margin-left: 0;
-        }
-        .more-count {
-          margin-left: -4px;
-          background: var(--neutral-950);
-          color: #ffffff;
+        .h-av:first-child { margin-left: 0; }
+        .h-av-more {
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          background: #D4FB20;
+          color: #242528;
+          font-family: var(--font-body);
           font-size: 10px;
           font-weight: 700;
-          padding: 3px 6px;
-          border-radius: 9999px;
-          border: 2px solid #ffffff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 2px solid #fff;
+          margin-left: -12px;
+          flex-shrink: 0;
         }
 
-        /* Floating 3D Ornaments */
-        .hero-ornament {
-          position: absolute;
-          z-index: 2;
-          pointer-events: none;
+        /* ────────────────────────────────────── */
+        /* ANIMATIONS                             */
+        /* ────────────────────────────────────── */
+        @keyframes floatGentle {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
         }
-        .hero-ornament img {
-          width: 100%;
-          height: auto;
-          filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.2));
-        }
-        .ornament-top-left {
-          top: 90px;
-          left: 4%;
-          width: 140px;
-        }
-        .ornament-top-right {
-          top: 80px;
-          right: 3%;
-          width: 150px;
-        }
-        .ornament-left-squiggle {
-          bottom: 120px;
-          left: 2%;
-          width: 90px;
-        }
-        .ornament-bottom-ring {
-          bottom: 100px;
-          right: 2%;
-          width: 130px;
-        }
+        .animate-float { animation: floatGentle 5s ease-in-out infinite; }
+        .animate-float-delayed { animation: floatGentle 6s ease-in-out infinite 1.5s; }
 
-        @media (max-width: 992px) {
-          .hero-title {
-            font-size: 44px;
-          }
-          .badge-uiux {
-            left: 0;
-          }
-          .badge-progress {
-            right: 0;
-          }
-          .badge-students {
-            left: 0;
-          }
+        /* ────────────────────────────────────── */
+        /* RESPONSIVE                             */
+        /* ────────────────────────────────────── */
+        @media (max-width: 1100px) {
+          .badge-uiux   { left: 2%; }
+          .badge-progress { right: 2%; }
+          .badge-students { left: 2%; }
+        }
+        @media (max-width: 900px) {
+          .hero-inner { padding-top: 120px; gap: 36px; }
+          .hero-title { font-size: 36px; }
+          .hero-search-input-wrap { width: 280px; }
+          .hero-visual-area { height: 340px; }
+          .hero-student-img { width: 260px; }
+          .hero-lime-circle { width: 360px; height: 360px; }
+          .h-orb { display: none; }
+          .badge-uiux, .badge-students { display: none; }
+          .badge-progress { right: 8%; }
         }
         @media (max-width: 600px) {
-          .hero-title {
-            font-size: 34px;
-          }
-          .hero-visual-wrapper {
-            height: 380px;
-          }
-          .hero-student-img {
-            width: 320px;
-          }
-          .hero-lime-circle {
-            width: 280px;
-            height: 280px;
-          }
-          .badge-uiux, .badge-progress {
-            display: none;
-          }
-          .ornament-top-left, .ornament-top-right {
-            width: 80px;
-          }
+          .hero-title { font-size: 28px; }
+          .hero-subtitle { font-size: 15px; }
+          .hero-search-bar { flex-direction: column; width: 90%; }
+          .hero-search-input-wrap { width: 100%; }
+          .hero-search-btn { width: 100%; }
+          .hero-visual-area { height: 280px; }
+          .hero-student-img { width: 200px; }
+          .hero-lime-circle { width: 260px; height: 260px; }
+          .h-badge { display: none; }
         }
       `}</style>
     </section>
