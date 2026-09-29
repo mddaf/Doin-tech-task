@@ -26,7 +26,7 @@ dist-ssr
 # Environment & credentials
 .env
 .env.*
-.agents/mcp_config.json
+.agents
 
 # Scratch & raw design dumps
 design_assets/
