@@ -59,11 +59,11 @@ export default function HomePage({ onNavigate, cartCount, onAddToCart }) {
         onSelectCategory={handleSelectCategory}
       />
 
-      {/* Feature 1: Path to Professional Growth */}
-      <FeatureOne />
-
-      {/* Feature 2: Create & Manage Courses Easily */}
-      <FeatureTwo />
+      {/* Features section: Path to Professional Growth + Create & Manage (shared #FAFAFA bg) */}
+      <div style={{ background: '#FAFAFA' }}>
+        <FeatureOne />
+        <FeatureTwo />
+      </div>
 
       {/* Creator CTA Banner */}
       <CreatorCTA 

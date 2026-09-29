@@ -2,126 +2,222 @@ import React from 'react';
 
 export default function CreatorCTA({ onJoinCreator }) {
   return (
-    <section className="creator-cta-section">
-      <div className="container">
-        <div className="cta-banner bg-grid-blue">
-          {/* Floating 3D Shapes */}
-          <div className="cta-ornament cta-ornament-left animate-float">
-            <img 
-              src="/figma_images/4557999be35f4bf82b01da42a1ef24a1236fbddc.png" 
-              alt="3D Ribbon" 
-              onError={(e) => e.target.style.display = 'none'}
-            />
-          </div>
-          <div className="cta-ornament cta-ornament-right animate-float-delayed">
-            <img 
-              src="/figma_images/92fc70a39c36138c0e55699b18b3e88bd1f86a59.png" 
-              alt="3D Shape" 
-              onError={(e) => e.target.style.display = 'none'}
-            />
-          </div>
-          <div className="cta-ornament cta-ornament-ring animate-float">
-            <img 
-              src="/figma_images/f9c0e0fd05db48405aa72287b20d04b9a01feb51.png" 
-              alt="3D Ring" 
-              onError={(e) => e.target.style.display = 'none'}
-            />
-          </div>
+    <section className="creator-cta-section" id="creator">
+      <div className="cta-banner">
+        {/* Grid pattern overlay - full section background */}
+        <div className="cta-grid-overlay" />
 
-          <div className="cta-content">
-            <h2 className="cta-title">
-              Unlock Your Potential as a <br /> Creator with ByteSpace
-            </h2>
-            <p className="cta-description">
-              Experience the collaboration of numerous creators and an expanding selection of courses. Register now and become a part of a community comprising over 10,000 local and international creators. Utilize our Course Editor, and showcase your expertise by publishing your finest course on the ByteSpace Course Library.
-            </p>
-            <button 
-              type="button" 
-              className="btn btn-lime cta-btn"
-              onClick={onJoinCreator}
-              id="cta-join-creator-btn"
-            >
-              Join as Creator
-            </button>
-          </div>
+        {/* Floating 3D ornaments */}
+        {/* Bottom-left: large lime blob shape */}
+        <div className="cta-shape cta-shape-large-bl animate-float">
+          <img
+            src="/figma_images/e3b55902d605bfc37a0809e6dc6dfe61b6701897.png"
+            alt=""
+            onError={(e) => e.target.style.display = 'none'}
+          />
+        </div>
+        {/* Top-left: small white shape */}
+        <div className="cta-shape cta-shape-sm-tl animate-float-delayed">
+          <img
+            src="/figma_images/5b3686bc5eadc510e3e04da588f9299d8bd3194c.png"
+            alt=""
+            onError={(e) => e.target.style.display = 'none'}
+          />
+        </div>
+        {/* Bottom-left: medium cone */}
+        <div className="cta-shape cta-shape-med-bl animate-float">
+          <img
+            src="/figma_images/8670b841eac7883ecb790f84eb349c6c01db588b.png"
+            alt=""
+            onError={(e) => e.target.style.display = 'none'}
+          />
+        </div>
+        {/* Top-right: cone */}
+        <div className="cta-shape cta-shape-cone-tr animate-float-delayed">
+          <img
+            src="/figma_images/f9c0e0fd05db48405aa72287b20d04b9a01feb51.png"
+            alt=""
+            onError={(e) => e.target.style.display = 'none'}
+          />
+        </div>
+        {/* Top-right: student circle */}
+        <div className="cta-shape cta-shape-circle-tr animate-float">
+          <img
+            src="/figma_images/cda676feaf7fba8b0f81b47c5ea2707d7acb5217.png"
+            alt=""
+            onError={(e) => e.target.style.display = 'none'}
+          />
+        </div>
+        {/* Mid-right: cone */}
+        <div className="cta-shape cta-shape-cone-mr animate-float-delayed">
+          <img
+            src="/figma_images/92fc70a39c36138c0e55699b18b3e88bd1f86a59.png"
+            alt=""
+            onError={(e) => e.target.style.display = 'none'}
+          />
+        </div>
+
+        {/* Main content */}
+        <div className="cta-content">
+          <h2 className="cta-title">
+            Unlock Your Potential as a{' '}
+            <span className="cta-creator-highlight">Creator</span>{' '}
+            with ByteSpace
+          </h2>
+          <p className="cta-description">
+            Experience the collaboration of numerous creators and an expanding selection of courses. Register now and become a part of a community comprising over 10,000 local and international creators. Utilize our Course Editor, and showcase your expertise by publishing your finest course on the ByteSpace Course Library.
+          </p>
+          <button
+            type="button"
+            className="btn btn-lime cta-btn"
+            onClick={onJoinCreator}
+            id="cta-join-creator-btn"
+          >
+            Join as Creator
+          </button>
         </div>
       </div>
 
       <style>{`
         .creator-cta-section {
-          padding: 40px 0 80px;
           background: #ffffff;
         }
         .cta-banner {
-          border-radius: 32px;
-          padding: 80px 40px;
-          text-align: center;
+          background-color: var(--primary-800);
           position: relative;
           overflow: hidden;
-          box-shadow: 0 25px 50px -12px rgba(4, 69, 255, 0.35);
+          min-height: 488px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .cta-grid-overlay {
+          position: absolute;
+          inset: 0;
+          background-image:
+            linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+          background-size: 60px 60px;
+          opacity: 0.12;
+          z-index: 1;
         }
         .cta-content {
           position: relative;
           z-index: 3;
-          max-width: 820px;
-          margin: 0 auto;
+          text-align: center;
+          max-width: 964px;
+          padding: 85px 238px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 40px;
         }
         .cta-title {
+          font-family: var(--font-heading);
           font-size: 44px;
-          font-weight: 700;
-          color: #ffffff;
+          font-weight: 600;
+          color: #F5F5F6;
           line-height: 1.2;
-          margin-bottom: 24px;
-          letter-spacing: -0.8px;
+          letter-spacing: -0.01em;
+          max-width: 710px;
+        }
+        .cta-creator-highlight {
+          color: #F5F5F6;
         }
         .cta-description {
-          font-size: 16px;
-          color: rgba(255, 255, 255, 0.9);
-          line-height: 1.7;
-          margin-bottom: 36px;
+          font-family: var(--font-body);
+          font-size: 18px;
+          color: #F5F5F6;
+          line-height: 1.6;
+          text-align: center;
+          max-width: 964px;
+          opacity: 0.9;
         }
         .cta-btn {
-          padding: 14px 36px;
-          font-size: 16px;
+          padding: 12px 24px;
+          font-size: 18px;
+          font-weight: 500;
+          font-family: var(--font-body);
+          border-radius: 24px;
         }
 
-        /* 3D Shapes */
-        .cta-ornament {
+        /* Decorative shapes */
+        .cta-shape {
           position: absolute;
-          pointer-events: none;
           z-index: 2;
+          pointer-events: none;
+          overflow: hidden;
+          border-radius: 50%;
         }
-        .cta-ornament img {
+        .cta-shape img {
           width: 100%;
-          height: auto;
-          filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.25));
+          height: 100%;
+          object-fit: cover;
         }
-        .cta-ornament-left {
+        /* Bottom-left big lime blob */
+        .cta-shape-large-bl {
+          width: 385px;
+          height: 385px;
+          left: -3px;
+          bottom: -80px;
+        }
+        /* Top-left small white shape */
+        .cta-shape-sm-tl {
+          width: 176px;
+          height: 176px;
+          left: 296px;
+          top: 20%;
+        }
+        /* Mid bottom-left medium cone */
+        .cta-shape-med-bl {
+          width: 342px;
+          height: 342px;
+          left: 138px;
+          bottom: -60px;
+        }
+        /* Top-right cone */
+        .cta-shape-cone-tr {
+          width: 188px;
+          height: 188px;
+          right: 242px;
+          top: -26px;
+        }
+        /* Right circle (student) */
+        .cta-shape-circle-tr {
+          width: 330px;
+          height: 330px;
+          right: 90px;
+          bottom: 0;
+        }
+        /* Mid-right cone */
+        .cta-shape-cone-mr {
+          width: 370px;
+          height: 370px;
+          right: 26px;
           top: 30px;
-          left: 30px;
-          width: 110px;
-        }
-        .cta-ornament-right {
-          top: 40px;
-          right: 30px;
-          width: 120px;
-        }
-        .cta-ornament-ring {
-          bottom: 20px;
-          left: 50px;
-          width: 90px;
         }
 
-        @media (max-width: 768px) {
-          .cta-banner {
-            padding: 60px 20px;
-            border-radius: 20px;
+        @media (max-width: 1024px) {
+          .cta-content {
+            padding: 80px 80px;
           }
           .cta-title {
-            font-size: 32px;
+            font-size: 36px;
           }
-          .cta-ornament {
+          .cta-shape {
             display: none;
+          }
+        }
+        @media (max-width: 768px) {
+          .cta-content {
+            padding: 60px 24px;
+            gap: 28px;
+          }
+          .cta-title {
+            font-size: 28px;
+          }
+          .cta-description {
+            font-size: 16px;
           }
         }
       `}</style>
