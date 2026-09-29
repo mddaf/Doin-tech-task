@@ -1,0 +1,97 @@
+# ByteSpace Website
+
+> A pixel-perfect implementation of the **ByteSpace** e-learning platform built from the provided Figma design.
+
+## 🚀 Live Demo
+
+**[View Live on Vercel →](https://doin-tech-task.vercel.app)** *(update link after deployment)*
+
+---
+
+## 📁 Pages Implemented
+
+| Page | Route | Description |
+|------|-------|-------------|
+| Landing Page | `/` | Full hero, courses catalog, categories, features, CTA, testimonials, footer |
+| Login | `/login` | Email + password auth form with social login buttons |
+| Register | `/register` | Full name, email, password signup form |
+
+---
+
+## 🎨 Design System
+
+Extracted directly from the Figma Style Guide:
+
+- **Typography**: Poppins (headings) + Satoshi (body)
+- **Primary Color**: `#0445ff` (Electric Blue)
+- **Accent Color**: `#cbfc01` (Lime Green)
+- **Neutral Palette**: 11-step scale from `#f5f5f6` to `#242528`
+- **Grid**: 12-column, 120px margin, 40px gutter
+
+---
+
+## 🔧 Tech Stack
+
+- **React 19** + **Vite 6**
+- **Vanilla CSS** (design tokens via CSS custom properties)
+- **Lucide React** (icons)
+- **Canvas Confetti** (enroll/register celebration)
+- **Figma REST API** (design assets extracted programmatically)
+
+---
+
+## ⚙️ Running Locally
+
+```bash
+git clone https://github.com/mddaf/Doin-tech-task.git
+cd Doin-tech-task
+git checkout feat/bytespace-landing-auth
+npm install
+npm run dev
+```
+
+---
+
+## 🗂 Project Structure
+
+```
+src/
+├── components/        # Reusable UI components
+│   ├── Header.jsx
+│   ├── Hero.jsx
+│   ├── LogoCloud.jsx
+│   ├── CourseCard.jsx
+│   ├── CoursesSection.jsx
+│   ├── LearningPaths.jsx
+│   ├── FeatureOne.jsx
+│   ├── FeatureTwo.jsx
+│   ├── CreatorCTA.jsx
+│   ├── Testimonials.jsx
+│   ├── Footer.jsx
+│   └── CourseModal.jsx
+├── pages/
+│   ├── HomePage.jsx
+│   ├── LoginPage.jsx
+│   └── RegisterPage.jsx
+├── data/
+│   └── content.js     # All content data extracted from Figma
+├── App.jsx            # Client-side routing
+├── main.jsx
+└── index.css          # Design system tokens & global styles
+public/
+├── figma_images/      # 58 course images from Figma API
+├── figma_graphics/    # Composite graphics (hero, features)
+└── figma_svgs/        # SVG icons (logo, category icons)
+```
+
+---
+
+## 🔑 Figma API
+
+Design tokens were extracted programmatically using the Figma REST API (`figma-developer-mcp`):
+- File key: `GzASNOgZUiUf6Ph5W8Trjs`
+- Nodes: Home (`1:1067`), Register (`47:351`), Login (`49:195`)
+
+---
+
+*Built by [mddaf](https://github.com/mddaf)*
