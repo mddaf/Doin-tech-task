@@ -4,76 +4,116 @@ import { STATS } from '../data/content';
 export default function FeatureOne() {
   return (
     <section className="features-wrapper" id="about">
-      {/* Decorative background elements */}
-      <div className="features-bg-decoration">
-        <div className="features-glow features-glow-lime" />
-        <div className="features-glow features-glow-blue" />
+      {/* Decorative background glows */}
+      <div className="features-bg-deco">
+        <div className="fbg-glow fbg-glow-lime" />
+        <div className="fbg-glow fbg-glow-blue" />
       </div>
 
       <div className="container">
-        {/* ── SECTION 1: Professional Growth ── */}
-        <div className="feature-grid feature-grid-1">
+        {/* ── Feature Row 1: Your Path to Professional Growth ── */}
+        <div className="f1-grid">
           {/* Left: Text + Stats */}
-          <div className="feature-text-col">
-            <h2 className="feature-heading">
-              Your Path to Professional<br />Growth Starts Here!
+          <div className="f1-text-col">
+            <h2 className="f1-heading">
+              Your Path to Professional Growth Starts Here!
             </h2>
-            <p className="feature-paragraph">
-              Explore our curated selection of courses tailored to enhance your capabilities and accelerate your career journey. Whether you are looking to sharpen specific skills, gain industry expertise, or embark on a new career path entirely, we have the resources you need.
+            <p className="f1-body">
+              Explore our curated selection of courses tailored to enhance your
+              capabilities and accelerate your career journey. Whether you are
+              looking to sharpen specific skills, gain industry expertise, or
+              embark on a new career path entirely, we have the resources you need.
             </p>
-
-            {/* Stats */}
-            <div className="stats-row">
-              {STATS.map((stat, idx) => (
-                <div key={idx} className="stat-item">
-                  <div className="stat-value">{stat.value}</div>
-                  <div className="stat-label">{stat.label}</div>
+            <div className="f1-stats">
+              {STATS.map((stat, i) => (
+                <div key={i} className="f1-stat">
+                  <div className="f1-stat-val">{stat.value}</div>
+                  <div className="f1-stat-lbl">{stat.label}</div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Right: Student image with overlaid badges */}
-          <div className="feature-visual-col">
-            <div className="feature1-visual">
-              {/* Main course card */}
+          {/* Right: Visual composite (621×552) */}
+          {/*
+            Figma layout (#34:1155, 621×552):
+            - Course card (#34:1055): x:0, y:0, 373×384 — bottom layer
+            - Student image (#34:971): x:0, y:12, 577×540 — above card
+            - Lime blob 1 (#34:981): x:406, y:67, 215×215
+            - Lime blob 2 (#34:1006): x:305, y:114, 215×215
+            - Learning Progress badge (#34:1031): x:345, y:213
+            - Happy Students badge (#34:1038): x:283, y:413, w:258
+          */}
+          <div className="f1-visual-col">
+            <div className="f1-visual">
+              {/* Course card (bottom-left layer) */}
               <div className="f1-course-card">
-                <img
-                  src="/figma_images/93ad9f9e6bdb3c7f3c478820624ee19ad7320072.png"
-                  alt="Learn Figma Course"
-                  className="f1-course-thumb"
-                />
-                <div className="f1-course-info">
-                  <div className="f1-course-title">Learn Figma from Basic</div>
-                  <div className="f1-course-meta">$25.00</div>
+                <div className="f1-card-img-wrap">
+                  <img
+                    src="/figma_images/93ad9f9e6bdb3c7f3c478820624ee19ad7320072.png"
+                    alt="Learn Figma from Basic"
+                    className="f1-card-thumb"
+                  />
+                  <div className="f1-card-pills">
+                    <span className="f1-pill">17 Lessons</span>
+                    <span className="f1-pill">2 hours 16 mins</span>
+                  </div>
+                </div>
+                <div className="f1-card-body">
+                  <div className="f1-card-title">Learn Figma from Basic</div>
+                  <div className="f1-card-by">by purepearl studio</div>
+                  <div className="f1-card-level">
+                    <span className="f1-level-badge">Beginner</span>
+                  </div>
+                  <div className="f1-card-price">$25</div>
                 </div>
               </div>
 
-              {/* Student photo */}
+              {/* Student image (main, sits over card) */}
               <img
                 src="/figma_images/29a52a24e51266edcd7d57d73392ee5fc4833220.png"
                 alt="ByteSpace Student"
-                className="f1-student-img"
+                className="f1-student"
               />
 
-              {/* Learning Progress badge */}
-              <div className="f1-badge f1-badge-progress">
-                <div className="f1-badge-label">Learning Progress</div>
+              {/* Lime blob 1 — x:406, y:67 (upper-right) */}
+              <img
+                src="/feature_orbs/feature_lime_blob1.png"
+                alt=""
+                className="f1-blob f1-blob1 animate-float"
+              />
+              {/* Lime blob 2 — x:305, y:114 (mid-right) */}
+              <img
+                src="/feature_orbs/feature_lime_blob2.png"
+                alt=""
+                className="f1-blob f1-blob2 animate-float-delayed"
+              />
+
+              {/* Learning Progress badge — x:345, y:213 */}
+              <div className="f1-badge f1-badge-progress animate-float-delayed">
+                <div className="f1-badge-lbl">Learning Progress</div>
                 <div className="f1-badge-pct">55%</div>
-                <div className="f1-progress-track">
-                  <div className="f1-progress-fill" style={{ width: '55%' }} />
+                <div className="f1-prog-track">
+                  <div className="f1-prog-fill" />
                 </div>
               </div>
 
-              {/* Happy Students badge */}
-              <div className="f1-badge f1-badge-students">
-                <div className="f1-students-label">Happy Students</div>
-                <div className="f1-avatars">
-                  <img src="/figma_images/0577f0e9b7fca2f32639871454da0de95f951709.png" alt="" className="f1-avatar" />
-                  <img src="/figma_images/63c4be83222c85e6c852819bc5d4b24a87a87fb6.png" alt="" className="f1-avatar" />
-                  <img src="/figma_images/728c3b1d33fe647a46f9bf668322f8c1d94ed937.png" alt="" className="f1-avatar" />
-                  <img src="/figma_images/853767f40f2b236e768652174f76aa081e7d5cf2.png" alt="" className="f1-avatar" />
-                  <span className="f1-more">2K+</span>
+              {/* Happy Students badge — x:283, y:413, w:258 */}
+              <div className="f1-badge f1-badge-students animate-float">
+                <div className="f1-stu-header">
+                  <span className="f1-stu-title">Happy Students</span>
+                </div>
+                <div className="f1-stu-row">
+                  <div className="f1-avatars">
+                    <img src="/figma_images/9ef8cb329b949267cc8214b6727067c4a13af4b4.png" alt="" className="f1-av" />
+                    <img src="/figma_images/b44979e1c98ecb3ec92ac86805fe55581fbeaa60.png" alt="" className="f1-av" />
+                    <img src="/figma_images/83fb3e04056cc892636460bee5791aa3f243854c.png" alt="" className="f1-av" />
+                    <img src="/figma_images/f3cf29a8fed39589ceb38423e65b26b8d6c93123.png" alt="" className="f1-av" />
+                    <img src="/figma_images/5824acacb3b76175bc84084ec18597109498f96d.png" alt="" className="f1-av" />
+                    <img src="/figma_images/7fdccc783264eedc4fb989984eecbc4058a219f2.png" alt="" className="f1-av" />
+                    <img src="/figma_images/1e078348a54489bfd231d82fe1944770883c8d80.png" alt="" className="f1-av" />
+                    <span className="f1-av-more">2K+</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -82,54 +122,58 @@ export default function FeatureOne() {
       </div>
 
       <style>{`
+        /* ── Wrapper ── */
         .features-wrapper {
           background: #FAFAFA;
-          padding: 100px 0;
+          padding: 100px 0 0;
           position: relative;
           overflow: hidden;
         }
-        .features-bg-decoration {
+        .features-bg-deco {
           position: absolute;
           inset: 0;
           pointer-events: none;
           z-index: 0;
         }
-        .features-glow {
+        .fbg-glow {
           position: absolute;
           border-radius: 50%;
-          filter: blur(20px);
+          filter: blur(80px);
         }
-        .features-glow-lime {
-          width: 672px;
-          height: 672px;
-          left: -287px;
-          bottom: 0;
-          background: radial-gradient(circle at 50% 50%, rgba(203, 252, 1, 0.6) 0%, rgba(203, 252, 1, 0.14) 53%, rgba(203, 252, 1, 0.04) 75%, rgba(203, 252, 1, 0) 100%);
+        /* Lime glow — left side */
+        .fbg-glow-lime {
+          width: 600px;
+          height: 600px;
+          left: -200px;
+          top: 50px;
+          background: radial-gradient(circle, rgba(203,252,1,0.35) 0%, rgba(203,252,1,0.05) 70%, transparent 100%);
         }
-        .features-glow-blue {
+        /* Blue glow — right side */
+        .fbg-glow-blue {
           width: 500px;
           height: 500px;
-          right: -100px;
+          right: -150px;
           top: -100px;
-          background: radial-gradient(circle at 50% 50%, rgba(0, 59, 226, 0.12) 0%, rgba(0, 59, 226, 0.02) 70%, rgba(0, 59, 226, 0) 100%);
+          background: radial-gradient(circle, rgba(0,59,226,0.08) 0%, transparent 70%);
         }
-        .feature-grid {
+
+        /* ── Grid ── */
+        .f1-grid {
           display: grid;
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: 574px 1fr;
           gap: 63px;
           align-items: center;
           position: relative;
           z-index: 1;
         }
-        .feature-grid-1 {
-          margin-bottom: 100px;
-        }
-        .feature-text-col {
+
+        /* ── Text column ── */
+        .f1-text-col {
           display: flex;
           flex-direction: column;
           gap: 40px;
         }
-        .feature-heading {
+        .f1-heading {
           font-family: var(--font-heading);
           font-size: 44px;
           font-weight: 600;
@@ -137,210 +181,270 @@ export default function FeatureOne() {
           line-height: 1.2;
           letter-spacing: -0.01em;
         }
-        .feature-paragraph {
+        .f1-body {
           font-family: var(--font-body);
           font-size: 18px;
           color: #4B4C53;
           line-height: 1.6;
           margin-top: -16px;
         }
-        .stats-row {
+        .f1-stats {
           display: flex;
           align-items: flex-end;
           gap: 56px;
         }
-        .stat-item {
-          display: flex;
-          flex-direction: column;
-        }
-        .stat-value {
+        .f1-stat { display: flex; flex-direction: column; }
+        .f1-stat-val {
           font-family: var(--font-heading);
           font-size: 36px;
           font-weight: 500;
-          color: var(--primary-800);
+          color: #003BE2;
           line-height: 44px;
           letter-spacing: -0.01em;
         }
-        .stat-label {
+        .f1-stat-lbl {
           font-family: var(--font-body);
           font-size: 18px;
           color: #4B4C53;
           line-height: 1.6;
         }
 
-        /* Feature 1 Right Visual */
-        .feature-visual-col {
+        /* ── Visual column ── */
+        .f1-visual-col {
           display: flex;
-          justify-content: center;
+          justify-content: flex-start;
           align-items: center;
         }
-        .feature1-visual {
+        /* Container: 621×552 matching Figma */
+        .f1-visual {
           position: relative;
           width: 621px;
           height: 552px;
+          flex-shrink: 0;
         }
-        .f1-student-img {
-          position: absolute;
-          left: 0;
-          top: 12px;
-          width: 377px;
-          height: 540px;
-          object-fit: cover;
-          border-radius: 16px;
-          box-shadow: 0.52px 0.74px 3.04px 0px rgba(0,0,0,0.04), 2.23px 3.19px 5.72px 0px rgba(0,0,0,0.06), 5.38px 7.69px 9.57px 0px rgba(0,0,0,0.07), 10.21px 14.58px 16.09px 0px rgba(0,0,0,0.08);
-        }
+
+        /* Course card: x:0, y:0, 373×384 (behind student) */
         .f1-course-card {
           position: absolute;
           right: 0;
           top: 0;
-          width: 373px;
+          width: 310px;
           background: #ffffff;
           border: 1px solid #CED0D3;
           border-radius: 24px;
           overflow: hidden;
           z-index: 2;
+          box-shadow: 0 8px 30px rgba(0,0,0,0.07);
         }
-        .f1-course-thumb {
+        .f1-card-img-wrap {
+          position: relative;
+        }
+        .f1-card-thumb {
           width: 100%;
-          height: 195px;
+          height: 170px;
           object-fit: cover;
-          border-radius: 12px;
           display: block;
-          margin: 16px;
-          margin-bottom: 0;
-          width: calc(100% - 32px);
+          border-radius: 12px;
+          margin: 12px;
+          width: calc(100% - 24px);
         }
-        .f1-course-info {
-          padding: 16px;
+        .f1-card-pills {
+          position: absolute;
+          bottom: 10px;
+          left: 20px;
+          display: flex;
+          gap: 8px;
         }
-        .f1-course-title {
+        .f1-pill {
+          background: rgba(0,0,0,0.55);
+          color: #fff;
+          font-family: var(--font-body);
+          font-size: 11px;
+          font-weight: 500;
+          padding: 3px 8px;
+          border-radius: 20px;
+        }
+        .f1-card-body {
+          padding: 12px 16px 16px;
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+        }
+        .f1-card-title {
           font-family: var(--font-heading);
-          font-size: 16px;
+          font-size: 15px;
           font-weight: 600;
           color: #242528;
-          margin-bottom: 8px;
         }
-        .f1-course-meta {
+        .f1-card-by {
           font-family: var(--font-body);
-          font-size: 16px;
+          font-size: 12px;
+          color: #82868E;
+        }
+        .f1-card-level {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+        }
+        .f1-level-badge {
+          background: #f0f5ff;
+          color: #003BE2;
+          font-family: var(--font-body);
+          font-size: 11px;
+          font-weight: 500;
+          padding: 2px 8px;
+          border-radius: 20px;
+        }
+        .f1-card-price {
+          font-family: var(--font-heading);
+          font-size: 14px;
           font-weight: 600;
-          color: var(--primary-800);
+          color: #003BE2;
         }
 
-        /* Learning Progress badge */
+        /* Student image: x:0, y:12, 577×540 — centered, on top of card */
+        .f1-student {
+          position: absolute;
+          left: 0;
+          top: 12px;
+          width: 62%;
+          height: calc(100% - 12px);
+          object-fit: cover;
+          object-position: center top;
+          z-index: 3;
+          border-radius: 8px;
+          box-shadow:
+            0.52px 0.74px 3.04px rgba(0,0,0,0.04),
+            2.23px 3.19px 5.72px rgba(0,0,0,0.06),
+            5.38px 7.69px 9.57px rgba(0,0,0,0.07),
+            10.21px 14.58px 16.09px rgba(0,0,0,0.08);
+        }
+
+        /* Lime blobs: x:406, y:67 and x:305, y:114 */
+        .f1-blob {
+          position: absolute;
+          object-fit: contain;
+          z-index: 4;
+          pointer-events: none;
+        }
+        .f1-blob1 {
+          right: -10px;
+          top: 30px;
+          width: 130px;
+        }
+        .f1-blob2 {
+          right: 80px;
+          top: 80px;
+          width: 100px;
+        }
+
+        /* Learning Progress badge: x:345, y:213 */
         .f1-badge {
           position: absolute;
-          background: rgba(255,255,255,0.9);
-          backdrop-filter: blur(10px);
+          background: rgba(255,255,255,0.95);
           border-radius: 16px;
-          padding: 16px;
-          z-index: 4;
-          box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+          padding: 14px 16px;
+          z-index: 6;
+          backdrop-filter: blur(10px);
+          box-shadow: 0 8px 24px rgba(0,0,0,0.10);
         }
         .f1-badge-progress {
-          right: 345px;
-          top: 213px;
-          min-width: 200px;
+          right: 0;
+          top: 180px;
+          min-width: 175px;
         }
-        .f1-badge-label {
+        .f1-badge-lbl {
           font-family: var(--font-body);
-          font-size: 14px;
+          font-size: 12px;
           font-weight: 500;
           color: #242528;
-          margin-bottom: 8px;
+          margin-bottom: 6px;
         }
         .f1-badge-pct {
           font-family: var(--font-heading);
-          font-size: 48px;
+          font-size: 44px;
           font-weight: 600;
           color: #242528;
           line-height: 1.2;
           letter-spacing: -0.01em;
           margin-bottom: 8px;
         }
-        .f1-progress-track {
-          width: 200px;
-          height: 6px;
+        .f1-prog-track {
+          width: 140px;
+          height: 7px;
           background: #E5E6E8;
           border-radius: 24px;
           overflow: hidden;
         }
-        .f1-progress-fill {
+        .f1-prog-fill {
+          width: 55%;
           height: 100%;
-          background: var(--secondary-500);
+          background: #D4FB20;
           border-radius: 24px;
         }
 
-        /* Happy Students badge */
+        /* Happy Students badge: x:283, y:413, w:258 */
         .f1-badge-students {
           right: 0;
-          bottom: 41px;
-          min-width: 258px;
-          padding: 16px;
+          bottom: 10px;
+          min-width: 220px;
         }
-        .f1-students-label {
-          font-family: var(--font-body);
-          font-size: 16px;
-          font-weight: 500;
-          color: #242528;
+        .f1-stu-header {
           margin-bottom: 8px;
         }
-        .f1-avatars {
-          display: flex;
-          align-items: center;
-          gap: -16px;
+        .f1-stu-title {
+          font-family: var(--font-body);
+          font-size: 14px;
+          font-weight: 500;
+          color: #242528;
         }
-        .f1-avatar {
-          width: 43px;
-          height: 43px;
+        .f1-stu-row { display: flex; align-items: center; }
+        .f1-avatars { display: flex; align-items: center; }
+        .f1-av {
+          width: 36px;
+          height: 36px;
           border-radius: 50%;
-          border: 2px solid #fff;
           object-fit: cover;
+          border: 2px solid #fff;
           margin-left: -10px;
         }
-        .f1-avatar:first-child { margin-left: 0; }
-        .f1-more {
-          margin-left: 4px;
-          font-size: 12px;
+        .f1-av:first-child { margin-left: 0; }
+        .f1-av-more {
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          background: #D4FB20;
+          color: #242528;
+          font-family: var(--font-body);
+          font-size: 10px;
           font-weight: 700;
-          color: var(--neutral-950);
-          background: var(--neutral-100);
-          border-radius: 9999px;
-          padding: 4px 8px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 2px solid #fff;
+          margin-left: -10px;
+          flex-shrink: 0;
         }
 
-        @media (max-width: 1024px) {
-          .feature1-visual {
-            width: 100%;
-            height: 420px;
-          }
-          .f1-student-img {
-            width: 280px;
-            height: auto;
-          }
-          .f1-course-card {
-            width: 280px;
-          }
+        /* ── Animations ── */
+        @keyframes floatGentle {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-8px); }
+        }
+        .animate-float { animation: floatGentle 5s ease-in-out infinite; }
+        .animate-float-delayed { animation: floatGentle 6s ease-in-out infinite 1.5s; }
+
+        /* ── Responsive ── */
+        @media (max-width: 1100px) {
+          .f1-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+          .f1-visual { width: 100%; height: 480px; }
+          .f1-course-card { width: 260px; }
         }
         @media (max-width: 900px) {
-          .feature-grid {
-            grid-template-columns: 1fr;
-            gap: 40px;
-          }
-          .feature-grid-1 {
-            margin-bottom: 60px;
-          }
-          .feature-heading {
-            font-size: 34px;
-          }
-          .feature1-visual {
-            height: 380px;
-          }
-          .f1-badge-progress {
-            right: 10px;
-            top: auto;
-            bottom: 120px;
-          }
+          .f1-grid { grid-template-columns: 1fr; }
+          .f1-heading { font-size: 34px; }
+          .f1-visual { height: 380px; }
+          .f1-blob { display: none; }
         }
       `}</style>
     </section>
