@@ -30,7 +30,7 @@ export default function Header({ currentPath = '/', onNavigate, cartCount = 0 })
               e.target.style.display = 'none';
             }}
           />
-          <span className="logo-text">ByteSpace</span>
+          {/* <span className="logo-text">ByteSpace</span> */}
         </a>
 
         {/* Center Nav Links */}
