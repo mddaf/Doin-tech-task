@@ -4,7 +4,7 @@
 
 ## 🚀 Live Demo
 
-**[View Live on Vercel →](https://doin-tech-task.vercel.app)** *(update link after deployment)*
+**[View Live on Vercel →](https://doin-tech-task.vercel.app)** 
 
 ---
 
@@ -86,11 +86,7 @@ public/
 
 ---
 
-## 🔑 Figma API
 
-Design tokens were extracted programmatically using the Figma REST API (`figma-developer-mcp`):
-- File key: `GzASNOgZUiUf6Ph5W8Trjs`
-- Nodes: Home (`1:1067`), Register (`47:351`), Login (`49:195`)
 
 ---
 
