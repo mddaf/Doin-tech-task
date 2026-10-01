@@ -40,7 +40,6 @@ export default function RegisterPage({ onNavigate }) {
               alt="ByteSpace" 
               className="logo-mark"
             />
-            <span className="logo-text">ByteSpace</span>
           </a>
 
           <div className="auth-hero-text">
